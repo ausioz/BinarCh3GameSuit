@@ -19,11 +19,11 @@
         android:id="@+id/landing_page_text_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tuliskan namamu dibawah"
-        android:textSize="30sp"
-        android:textAlignment="center"
+        android:layout_below="@id/landing_page_img_3"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/landing_page_img_3"/>
+        android:text="Tuliskan namamu dibawah"
+        android:textAlignment="center"
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/landing_page_edit_text_3"
@@ -34,6 +34,7 @@
         android:layout_marginEnd="20dp"/>
 
     <ImageView
+        android:id="@+id/landing_page_next"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -41,6 +42,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/ic_baseline_arrow_right_24"
+        android:clickable="true"
+        android:focusable="true"
         />
 
 </RelativeLayout>

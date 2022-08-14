@@ -6,10 +6,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.viewpager2.widget.ViewPager2
 import com.ausioz.binarch3gamesuit.databinding.ActivityLandingPageBinding
 import com.ausioz.binarch3gamesuit.databinding.ActivityMainBinding
-import com.ausioz.binarch3gamesuit.landingpage.LandingPageThree
-import com.ausioz.binarch3gamesuit.landingpage.LandingPageTwo
-import com.ausioz.binarch3gamesuit.landingpage.LandingPage_One
-import com.ausioz.binarch3gamesuit.landingpage.LandingPagerAdapter
+import com.ausioz.binarch3gamesuit.landingpage.*
 import com.google.android.material.tabs.TabLayoutMediator
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
@@ -23,6 +20,7 @@ class LandingPageActivity : AppCompatActivity() {
         _binding = ActivityLandingPageBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
 
+
         val pagerAdapter = LandingPagerAdapter(fragmentActivity = this)
 
         _binding?.layoutViewPager?.adapter = pagerAdapter
@@ -32,7 +30,7 @@ class LandingPageActivity : AppCompatActivity() {
             listOf(
                 LandingPage_One(),
                 LandingPageTwo(),
-                LandingPageThree()
+                LandingPageThree(),
             )
         )
     }

@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
     private val textTitle = (R.string.app_title_text)
     private var _binding: ActivityMainBinding? = null
     private val pilihanSuit = arrayOf("Batu", "Gunting", "Kertas")
-    private var pemain1:String? = null
-    private var pemain2:String? = null
-    private var status:String? = null
+    private var pemain1: String? = null
+    private var pemain2: String? = null
+    private var status: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("Pemain 1 Input", pemain1!!)
         }
 
-        fun player2Mode(){
+        fun player2Mode() {
             _binding?.comBtnBatu?.setOnClickListener {
                 refreshPickP2()
                 activePickBatuP2()
@@ -88,13 +88,14 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Pemain 2 Input lock", pemain2!!)
             }
             _binding?.start?.setOnClickListener {
-
+                doRule()
                 Log.d("Pemain 2 Input lock", pemain2!!)
+                Log.d("Pemain 2 Input lock", status!!)
                 playTerminalP2mode()
             }
         }
 
-        _binding?.modeCom?.setOnClickListener{
+        _binding?.modeCom?.setOnClickListener {
             enablePickP1()
             refreshPickP1()
             refreshPickP2()
@@ -120,7 +121,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun doRule() {
-        pemain2 = pilihanSuit.random()
+//        pemain2 = pilihanSuit.random()
         // 0: Batu      1: Gunting      2:Kertas
         status = if (
             pemain1 == pilihanSuit[0] && pemain2 == pilihanSuit[1] ||
@@ -146,6 +147,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick?.isVisible = true
         _binding?.btnLockPick?.text = "Kunci Pilihan\nBatu"
     }
+
     private fun activePickBatuP2() {
         _binding?.comBtnBatu?.setBackgroundColor(resources.getColor(R.color.active))
         _binding?.comBtnGunting?.setColorFilter(Color.LTGRAY)
@@ -161,6 +163,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick?.isVisible = true
         _binding?.btnLockPick?.text = "Kunci Pilihan\nGunting"
     }
+
     private fun activePickGuntingP2() {
         _binding?.comBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnGunting?.setBackgroundColor(resources.getColor(R.color.active))
@@ -191,6 +194,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.playerBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnKertas?.setColorFilter(Color.LTGRAY)
     }
+
     private fun inactivePickP2() {
         _binding?.comBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnGunting?.setColorFilter(Color.LTGRAY)
@@ -207,6 +211,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.playerBtnKertas?.colorFilter = null
         _binding?.textTerminal?.setTextColor(Color.BLACK)
     }
+
     private fun refreshPickP2() {
         _binding?.btnLockPick2?.isVisible = false
         _binding?.comBtnBatu?.setBackgroundColor(Color.TRANSPARENT)
@@ -224,6 +229,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.playerBtnKertas?.isClickable = false
         _binding?.btnLockPick?.isVisible = false
     }
+
     private fun disablePickP2() {
         _binding?.comBtnBatu?.isClickable = false
         _binding?.comBtnGunting?.isClickable = false
@@ -236,6 +242,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.playerBtnGunting?.isClickable = true
         _binding?.playerBtnKertas?.isClickable = true
     }
+
     private fun enablePickP2() {
         _binding?.comBtnBatu?.isClickable = true
         _binding?.comBtnGunting?.isClickable = true
@@ -279,7 +286,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun terminalText() {
-        when (status){
+        when (status) {
             "Pemain 1 MENANG!" -> {
                 _binding?.textTerminal?.setTextColor(resources.getColor(R.color.player_win))
             }
@@ -314,6 +321,7 @@ class MainActivity : AppCompatActivity() {
         }
         count.start()
     }
+
     private fun playTerminalP2mode() {
 
         val count: CountDownTimer = object : CountDownTimer(3000, 1000) {

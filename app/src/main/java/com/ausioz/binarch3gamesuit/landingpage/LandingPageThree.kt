@@ -16,11 +16,6 @@ class LandingPageThree : Fragment() {
     private var _binding: FragmentLandingPageThreeBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,13 +27,11 @@ class LandingPageThree : Fragment() {
     override fun onResume() {
         super.onResume()
 
-
-
         _binding?.landingPageNext?.setOnClickListener {
-            Log.d("asd","wuhuu")
             val intent = Intent(activity,GameModeActivity::class.java)
             val playerName = _binding?.landingPageEditText3?.text.toString()
             intent.putExtra(PLAYER_NAME, playerName)
+            Log.d("player name",playerName)
             startActivity(intent)
         }
 

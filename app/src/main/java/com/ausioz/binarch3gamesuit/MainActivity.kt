@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.core.view.isVisible
 import com.ausioz.binarch3gamesuit.databinding.ActivityMainBinding
+import com.ausioz.binarch3gamesuit.landingpage.LandingPageThree
 
 class MainActivity : AppCompatActivity() {
     private val textTitle = (R.string.app_title_text)
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         _binding?.textTitle?.text = (getText(textTitle))
         _binding?.textTerminal?.text = "VS"
+
+        val playerName = intent.getStringExtra(LandingPageThree.PLAYER_NAME)
+        val gameModeId = intent.getIntExtra(GameModeActivity.GAME_MODE_ID, 2)
+
+        _binding?.textPlayerPick?.text = playerName
 
         // 0: Batu      1: Gunting      2:Kertas
         _binding?.playerBtnBatu?.setOnClickListener {
@@ -67,55 +73,82 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        _binding?.modeP2?.setOnClickListener {
-            player2Mode()
-            enablePickP1()
-            refreshPickP1()
-            refreshPickP2()
-            doRule()
-            _binding?.textTerminal?.text = "VS"
-            _binding?.btnLockPick?.setOnClickListener {
-                disablePickP1()
+        when (gameModeId) {
+            1 -> {
+                _binding?.textComPick?.text = "Player 2"
+                player2Mode()
+                enablePickP1()
                 refreshPickP1()
-                inactivePickP1()
-                enablePickP2()
-            }
-            _binding?.btnLockPick2?.setOnClickListener {
                 disablePickP2()
                 refreshPickP2()
                 inactivePickP2()
-                Log.d("Pemain 2 Input lock", pemain2!!)
+                _binding?.textTerminal?.text = "VS"
+                _binding?.btnLockPick?.setOnClickListener {
+                    disablePickP1()
+                    refreshPickP1()
+                    inactivePickP1()
+                    refreshPickP2()
+                    enablePickP2()
+                    _binding?.btnLockPick?.isVisible = false
+                    Log.d("Pemain 1 Input lock", pemain1!!)
+                }
+                _binding?.btnLockPick2?.setOnClickListener {
+                    disablePickP2()
+                    refreshPickP2()
+                    inactivePickP2()
+                    Log.d("Pemain 2 Input lock", pemain2!!)
+                    _binding?.btnLockPick2?.isVisible = false
+                    _binding?.start?.isVisible = true
+                    doRule()
+                }
+                _binding?.start?.setOnClickListener {
+                    playTerminalP2mode()
+                    _binding?.start?.isVisible = false
+                }
+                _binding?.btnRefresh?.setOnClickListener {
+                    enablePickP1()
+                    refreshPickP1()
+                    refreshPickP2()
+                    inactivePickP2()
+                    _binding?.textTerminal?.text = "VS"
+                }
             }
-            _binding?.start?.setOnClickListener {
-                doRule()
-                Log.d("Pemain 2 Input lock", pemain2!!)
-                Log.d("Pemain 2 Input lock", status!!)
-                playTerminalP2mode()
+            2 -> {
+                enablePickP1()
+                refreshPickP1()
+                refreshPickP2()
+                _binding?.textTerminal?.text = "VS"
+                pemain2 = pilihanSuit.random()
+                _binding?.btnLockPick?.setOnClickListener {
+                    disablePickP1()
+                    _binding?.btnLockPick?.isVisible = false
+                    _binding?.start?.isVisible = true
+                    Log.d("Pemain 1 Input lock", pemain1!!)
+                    doRule()
+                }
+                _binding?.start?.setOnClickListener {
+                    Log.d("Pemain 2 Input lock", pemain2!!)
+                    playTerminalP1mode()
+                    _binding?.start?.isVisible = false
+                }
+                _binding?.btnRefresh?.setOnClickListener {
+                    enablePickP1()
+                    enablePickP2()
+                    refreshPickP1()
+                    refreshPickP2()
+                    _binding?.textTerminal?.text = "VS"
+                }
+            }
+            else -> {
+                enablePickP1()
+                enablePickP2()
+                refreshPickP1()
+                refreshPickP2()
+                _binding?.textTerminal?.text = "VS"
             }
         }
 
-        _binding?.modeCom?.setOnClickListener {
-            enablePickP1()
-            refreshPickP1()
-            refreshPickP2()
-            _binding?.textTerminal?.text = "VS"
-            pemain2 = pilihanSuit.random()
-            _binding?.btnLockPick?.setOnClickListener {
-                disablePickP1()
-            }
-            _binding?.start?.setOnClickListener {
-                doRule()
-                playTerminalP1mode()
-            }
-        }
 
-        _binding?.btnRefresh?.setOnClickListener {
-            enablePickP1()
-            enablePickP2()
-            refreshPickP1()
-            refreshPickP2()
-            _binding?.textTerminal?.text = "VS"
-        }
 
     }
 
@@ -202,6 +235,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshPickP1() {
         _binding?.btnLockPick?.isVisible = false
+        _binding?.start?.isVisible = false
         _binding?.playerBtnBatu?.setBackgroundColor(Color.TRANSPARENT)
         _binding?.playerBtnBatu?.colorFilter = null
         _binding?.playerBtnGunting?.setBackgroundColor(Color.TRANSPARENT)
@@ -213,6 +247,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshPickP2() {
         _binding?.btnLockPick2?.isVisible = false
+        _binding?.start?.isVisible = false
         _binding?.comBtnBatu?.setBackgroundColor(Color.TRANSPARENT)
         _binding?.comBtnBatu?.colorFilter = null
         _binding?.comBtnGunting?.setBackgroundColor(Color.TRANSPARENT)

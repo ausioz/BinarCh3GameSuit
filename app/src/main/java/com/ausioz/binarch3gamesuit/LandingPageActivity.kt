@@ -2,13 +2,9 @@ package com.ausioz.binarch3gamesuit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.MediatorLiveData
-import androidx.viewpager2.widget.ViewPager2
 import com.ausioz.binarch3gamesuit.databinding.ActivityLandingPageBinding
-import com.ausioz.binarch3gamesuit.databinding.ActivityMainBinding
 import com.ausioz.binarch3gamesuit.landingpage.*
-import com.google.android.material.tabs.TabLayoutMediator
-import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+
 
 class LandingPageActivity : AppCompatActivity() {
     private var _binding: ActivityLandingPageBinding? = null
@@ -28,7 +24,7 @@ class LandingPageActivity : AppCompatActivity() {
 
         pagerAdapter.setFragments(
             listOf(
-                LandingPage_One(),
+                LandingPageOne(),
                 LandingPageTwo(),
                 LandingPageThree(),
             )

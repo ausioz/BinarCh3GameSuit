@@ -8,7 +8,7 @@ import android.view.WindowManager
 import com.ausioz.binarch3gamesuit.databinding.ActivityMainBinding
 import com.ausioz.binarch3gamesuit.databinding.ActivitySplashScreenBinding
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
 
     private var _binding: ActivitySplashScreenBinding? = null
     private val textTitle = (R.string.app_title_text)
@@ -26,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LandingPageActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.

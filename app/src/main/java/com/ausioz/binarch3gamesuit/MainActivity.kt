@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         _binding?.textTitle?.text = (getText(textTitle))
         _binding?.textTerminal?.text = "VS"
 
-
         // 0: Batu      1: Gunting      2:Kertas
         _binding?.playerBtnBatu?.setOnClickListener {
             refreshPickP1()

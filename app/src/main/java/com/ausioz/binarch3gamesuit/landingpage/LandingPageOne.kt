@@ -14,7 +14,7 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [LandingPage_One.newInstance] factory method to
+ * Use the [LandingPageOne.newInstance] factory method to
  * create an instance of this fragment.
  */
 class LandingPageOne : Fragment() {

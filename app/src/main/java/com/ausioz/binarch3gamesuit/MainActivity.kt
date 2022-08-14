@@ -149,7 +149,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
     }
 
     private fun doRule() {

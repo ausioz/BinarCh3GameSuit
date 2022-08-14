@@ -20,8 +20,8 @@ class GameModeActivity : AppCompatActivity() {
 
         val playerName = intent.getStringExtra(LandingPageThree.PLAYER_NAME)
 
-        _binding?.gameModeTxtVsPlayer?.text = playerName + " vs Pemain2"
-        _binding?.gameModeTxtVsCom?.text = playerName + " vs CPU"
+        _binding?.gameModeTxtVsPlayer?.text = "$playerName vs Pemain2"
+        _binding?.gameModeTxtVsCom?.text = "$playerName vs CPU"
 
         _binding?.gameModeImgVsPlayer?.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)

@@ -1,12 +1,10 @@
 package com.ausioz.binarch3gamesuit
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.ausioz.binarch3gamesuit.databinding.ActivityGameModeBinding
 import com.ausioz.binarch3gamesuit.landingpage.LandingPageThree
 import com.google.android.material.snackbar.Snackbar
@@ -26,28 +24,29 @@ class GameModeActivity : AppCompatActivity() {
 
         _binding?.gameModeTxtVsPlayer?.text = "$playerName vs Pemain2"
         _binding?.gameModeTxtVsCom?.text = "$playerName vs CPU"
-        val view : LinearLayout = _binding?.root as LinearLayout
+        val view: LinearLayout = _binding?.root as LinearLayout
 
-        val snackbar = Snackbar.make(this, view,"Selamat Datang $playerName", Snackbar.LENGTH_INDEFINITE)
-        snackbar.setAction("Tutup"){snackbar.dismiss()}
+        val snackbar =
+            Snackbar.make(this, view, "Selamat Datang $playerName", Snackbar.LENGTH_INDEFINITE)
+        snackbar.setAction("Tutup") { snackbar.dismiss() }
         snackbar.show()
 
 
         _binding?.gameModeImgVsPlayer?.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             gameModeId = 1
             intent.putExtra(GAME_MODE_ID, gameModeId)
             intent.putExtra(LandingPageThree.PLAYER_NAME, playerName)
-            Log.d("game mode",gameModeId.toString())
+            Log.d("game mode", gameModeId.toString())
             startActivity(intent)
         }
 
         _binding?.gameModeImgVsCom?.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             gameModeId = 2
             intent.putExtra(GAME_MODE_ID, gameModeId)
             intent.putExtra(LandingPageThree.PLAYER_NAME, playerName)
-            Log.d("game mode",gameModeId.toString())
+            Log.d("game mode", gameModeId.toString())
             startActivity(intent)
         }
 

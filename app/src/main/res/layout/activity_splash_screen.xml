@@ -3,30 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreenActivity"
     android:orientation="vertical"
-    >
+    tools:context=".SplashScreenActivity">
 
     <TextView
-        android:layout_marginTop="?attr/actionBarSize"
+        android:id="@+id/splash_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_text"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="?attr/actionBarSize"
         android:text="TEXT TITLE"
         android:textAlignment="center"
         android:textSize="60sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_marginTop="60dp"
+        android:id="@+id/splash_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_image"
-        android:src="@drawable/ic_splash_screen2"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_splash_screen2" />
 
 
 </LinearLayout>

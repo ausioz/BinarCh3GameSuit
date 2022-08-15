@@ -28,10 +28,10 @@ class LandingPageThree : Fragment() {
         super.onResume()
 
         _binding?.landingPageNext?.setOnClickListener {
-            val intent = Intent(activity,GameModeActivity::class.java)
+            val intent = Intent(activity, GameModeActivity::class.java)
             val playerName = _binding?.landingPageEditText3?.text.toString()
             intent.putExtra(PLAYER_NAME, playerName)
-            Log.d("player name",playerName)
+            Log.d("player name", playerName)
             startActivity(intent)
         }
 

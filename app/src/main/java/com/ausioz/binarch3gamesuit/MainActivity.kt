@@ -1,6 +1,7 @@
 package com.ausioz.binarch3gamesuit
 
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -42,6 +43,14 @@ class MainActivity : AppCompatActivity() {
         val view: ConstraintLayout = _binding?.root as ConstraintLayout
         _binding?.textPlayerPick?.text = playerName
 
+
+        _binding?.btnBack?.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            Log.d("args", playerName.toString())
+            intent.putExtra(LandingPageThree.PLAYER_NAME, playerName)
+            startActivity(intent)
+        }
+
         // 0: Batu      1: Gunting      2:Kertas
         _binding?.playerBtnBatu?.setOnClickListener {
             refreshPickP1()
@@ -61,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             pemain1 = pilihanSuit[2]
             Log.d("Pemain 1 Input", pemain1!!)
         }
+
 
 
         fun player2Mode() {
@@ -86,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
 
         fun showResult() {
-            Timer().schedule(3010){
+            Timer().schedule(3010) {
                 val dialogFragment = ResultDialog()
                 val bundle = Bundle()
                 bundle.putString("status", status)
@@ -206,7 +216,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun activePickBatu() {
+    private fun activePickBatu() {
         _binding?.playerBtnBatu?.setBackgroundColor(resources.getColor(R.color.active))
         _binding?.playerBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnKertas?.setColorFilter(Color.LTGRAY)
@@ -214,7 +224,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick?.text = "Kunci Pilihan\nBatu"
     }
 
-    fun activePickBatuP2() {
+    private fun activePickBatuP2() {
         _binding?.comBtnBatu?.setBackgroundColor(resources.getColor(R.color.active))
         _binding?.comBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnKertas?.setColorFilter(Color.LTGRAY)
@@ -222,7 +232,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick2?.text = "Kunci Pilihan\nBatu"
     }
 
-    fun activePickGunting() {
+    private fun activePickGunting() {
         _binding?.playerBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnGunting?.setBackgroundColor(resources.getColor(R.color.active))
         _binding?.playerBtnKertas?.setColorFilter(Color.LTGRAY)
@@ -230,7 +240,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick?.text = "Kunci Pilihan\nGunting"
     }
 
-    fun activePickGuntingP2() {
+    private fun activePickGuntingP2() {
         _binding?.comBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnGunting?.setBackgroundColor(resources.getColor(R.color.active))
         _binding?.comBtnKertas?.setColorFilter(Color.LTGRAY)
@@ -238,7 +248,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick2?.text = "Kunci Pilihan\nGunting"
     }
 
-    fun activePickKertas() {
+    private fun activePickKertas() {
         _binding?.playerBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnKertas?.setBackgroundColor(resources.getColor(R.color.active))
@@ -246,7 +256,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.btnLockPick?.text = "Kunci Pilihan\nKertas"
     }
 
-    fun activePickKertasP2() {
+    private fun activePickKertasP2() {
         _binding?.comBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnKertas?.setBackgroundColor(resources.getColor(R.color.active))
@@ -255,19 +265,19 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun inactivePickP1() {
+    private fun inactivePickP1() {
         _binding?.playerBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.playerBtnKertas?.setColorFilter(Color.LTGRAY)
     }
 
-    fun inactivePickP2() {
+    private fun inactivePickP2() {
         _binding?.comBtnBatu?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnGunting?.setColorFilter(Color.LTGRAY)
         _binding?.comBtnKertas?.setColorFilter(Color.LTGRAY)
     }
 
-    fun refreshPickP1() {
+    private fun refreshPickP1() {
         _binding?.btnLockPick?.isVisible = false
         _binding?.start?.isVisible = false
         _binding?.playerBtnBatu?.setBackgroundColor(Color.TRANSPARENT)
@@ -279,7 +289,7 @@ class MainActivity : AppCompatActivity() {
         _binding?.textTerminal?.setTextColor(Color.BLACK)
     }
 
-    fun refreshPickP2() {
+    private fun refreshPickP2() {
         _binding?.btnLockPick2?.isVisible = false
         _binding?.start?.isVisible = false
         _binding?.comBtnBatu?.setBackgroundColor(Color.TRANSPARENT)
@@ -291,27 +301,27 @@ class MainActivity : AppCompatActivity() {
         _binding?.textTerminal?.setTextColor(Color.BLACK)
     }
 
-    fun disablePickP1() {
+    private fun disablePickP1() {
         _binding?.playerBtnBatu?.isClickable = false
         _binding?.playerBtnGunting?.isClickable = false
         _binding?.playerBtnKertas?.isClickable = false
         _binding?.btnLockPick?.isVisible = false
     }
 
-    fun disablePickP2() {
+    private fun disablePickP2() {
         _binding?.comBtnBatu?.isClickable = false
         _binding?.comBtnGunting?.isClickable = false
         _binding?.comBtnKertas?.isClickable = false
         _binding?.btnLockPick2?.isVisible = false
     }
 
-    fun enablePickP1() {
+    private fun enablePickP1() {
         _binding?.playerBtnBatu?.isClickable = true
         _binding?.playerBtnGunting?.isClickable = true
         _binding?.playerBtnKertas?.isClickable = true
     }
 
-    fun enablePickP2() {
+    private fun enablePickP2() {
         _binding?.comBtnBatu?.isClickable = true
         _binding?.comBtnGunting?.isClickable = true
         _binding?.comBtnKertas?.isClickable = true

@@ -29,19 +29,19 @@ class ResultDialog : DialogFragment() {
 
 
         _binding?.tvPemenang?.text = dataPemenang
-        Log.d("args",dataPemenang)
+        Log.d("args", dataPemenang)
 
         _binding?.btnTvMainLagi?.setOnClickListener {
-            val intent = Intent(activity,MainActivity::class.java)
-            Log.d("args",playerName.toString())
-            Log.d("args",gameModeId.toString())
+            val intent = Intent(activity, MainActivity::class.java)
+            Log.d("args", playerName)
+            Log.d("args", gameModeId.toString())
             intent.putExtra(GameModeActivity.GAME_MODE_ID, gameModeId)
             intent.putExtra(LandingPageThree.PLAYER_NAME, playerName)
             startActivity(intent)
         }
         _binding?.btnTvToGameMode?.setOnClickListener {
-            val intent = Intent(activity,GameModeActivity::class.java)
-            Log.d("args",playerName.toString())
+            val intent = Intent(activity, GameModeActivity::class.java)
+            Log.d("args", playerName)
             intent.putExtra(LandingPageThree.PLAYER_NAME, playerName)
             startActivity(intent)
         }

@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.ausioz.binarch3gamesuit.databinding.ActivityMainBinding
 import com.ausioz.binarch3gamesuit.landingpage.LandingPageThree
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private val textTitle = (R.string.app_title_text)
@@ -21,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(_binding?.root)
 
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val playerName = intent.getStringExtra(LandingPageThree.PLAYER_NAME)
         val gameModeId = intent.getIntExtra(GameModeActivity.GAME_MODE_ID, 2)
-
+        val view :ConstraintLayout = _binding?.root as ConstraintLayout
         _binding?.textPlayerPick?.text = playerName
 
         // 0: Batu      1: Gunting      2:Kertas
@@ -75,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
         when (gameModeId) {
             1 -> {
+                Snackbar.make(this, view,"Player 1 Phase", Snackbar.LENGTH_SHORT).show()
                 _binding?.textComPick?.text = "Player 2"
                 player2Mode()
                 enablePickP1()
@@ -91,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                     enablePickP2()
                     _binding?.btnLockPick?.isVisible = false
                     Log.d("Pemain 1 Input lock", pemain1!!)
+                    Snackbar.make(this, view,"Player 2 Phase", Snackbar.LENGTH_SHORT).show()
                 }
                 _binding?.btnLockPick2?.setOnClickListener {
                     disablePickP2()
@@ -100,12 +107,14 @@ class MainActivity : AppCompatActivity() {
                     _binding?.btnLockPick2?.isVisible = false
                     _binding?.start?.isVisible = true
                     doRule()
+                    Snackbar.make(this, view,"Start to play", Snackbar.LENGTH_SHORT).show()
                 }
                 _binding?.start?.setOnClickListener {
                     playTerminalP2mode()
                     _binding?.start?.isVisible = false
                 }
                 _binding?.btnRefresh?.setOnClickListener {
+                    Snackbar.make(this, view,"Player 1 Phase", Snackbar.LENGTH_SHORT).show()
                     enablePickP1()
                     refreshPickP1()
                     refreshPickP2()
@@ -114,6 +123,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             2 -> {
+                Snackbar.make(this, view,"Player 1 Phase", Snackbar.LENGTH_SHORT).show()
                 enablePickP1()
                 refreshPickP1()
                 refreshPickP2()
@@ -125,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                     _binding?.start?.isVisible = true
                     Log.d("Pemain 1 Input lock", pemain1!!)
                     doRule()
+                    Snackbar.make(this, view,"Start to play", Snackbar.LENGTH_SHORT).show()
                 }
                 _binding?.start?.setOnClickListener {
                     Log.d("Pemain 2 Input lock", pemain2!!)
@@ -132,6 +143,7 @@ class MainActivity : AppCompatActivity() {
                     _binding?.start?.isVisible = false
                 }
                 _binding?.btnRefresh?.setOnClickListener {
+                    Snackbar.make(this, view,"Player 1 Phase", Snackbar.LENGTH_SHORT).show()
                     enablePickP1()
                     enablePickP2()
                     refreshPickP1()

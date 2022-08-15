@@ -4,8 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.ausioz.binarch3gamesuit.databinding.ActivityGameModeBinding
 import com.ausioz.binarch3gamesuit.landingpage.LandingPageThree
+import com.google.android.material.snackbar.Snackbar
 
 class GameModeActivity : AppCompatActivity() {
     private var _binding: ActivityGameModeBinding? = null
@@ -22,6 +26,12 @@ class GameModeActivity : AppCompatActivity() {
 
         _binding?.gameModeTxtVsPlayer?.text = "$playerName vs Pemain2"
         _binding?.gameModeTxtVsCom?.text = "$playerName vs CPU"
+        val view : LinearLayout = _binding?.root as LinearLayout
+
+        val snackbar = Snackbar.make(this, view,"Selamat Datang $playerName", Snackbar.LENGTH_INDEFINITE)
+        snackbar.setAction("Tutup"){snackbar.dismiss()}
+        snackbar.show()
+
 
         _binding?.gameModeImgVsPlayer?.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
